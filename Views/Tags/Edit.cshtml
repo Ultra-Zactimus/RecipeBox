@@ -1,0 +1,12 @@
+@model RecipeBox.Models.Tag
+
+<h1>Edit this tag: @Html.DisplayFor(t => t.Category)</h1>
+
+@using (Html.BeginForm())
+{
+  @Html.HiddenFor(t => t.TagId)
+  @Html.LabelFor(t => t.Category)
+  @Html.TextBoxFor(t => t.Category)
+
+  <button>Edit this tag</button>
+}

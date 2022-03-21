@@ -20,5 +20,43 @@ namespace RecipeBox.Controllers
       List<Tag> model = _db.tags.ToList();
       return View(model);
     }
+
+    public ActionResult Create()
+    {
+      // do stuff
+    }
+
+    [HttpPost]
+    public ActionResult Create(Tag tag)
+    {
+      // do some other stuff
+    }
+
+    public ActionResult Details(int id)
+    {
+      // do some other stuff
+    }
+
+    public ActionResult Edit(int id)
+    {
+      // do some stuff
+    }
+
+    [HttpPost]
+    public ActionResult Edit(Tag tag)
+    {
+      // do some stuff
+    }
+
+    public ActionResult Delete(int id)
+    {
+      // do some stuff
+    }
+
+    [HttpPost, ActionNameabstract("Delete")]
+    public ActionResult DeleteConfirmed(int id)
+    {
+      // do some stuff
+    }
   }
 }

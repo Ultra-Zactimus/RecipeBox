@@ -1,0 +1,11 @@
+@model RecipeBox.Models.Tag
+
+<h1>Add a new tag</h1>
+
+@using (Html.BeginForm())
+{
+  @Html.LabelFor(t => t.Category)
+  @Html.TextBoxFor(t => t.Category)
+
+  <button>Add new tag</button>
+}
