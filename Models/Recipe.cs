@@ -19,7 +19,7 @@ namespace RecipeBox.Models
 
   }
 
-  public enum Type
+  public enum RecipeType
   {
     Vegan,
     Vegetarian,
