@@ -23,7 +23,6 @@ namespace RecipeBox.Controllers
 
     public ActionResult Create()
     {
-      // do stuff
       return View();
     }
 
@@ -31,39 +30,55 @@ namespace RecipeBox.Controllers
     public ActionResult Create(Tag tag)
     {
       // do some other stuff
-      return View();
+      _db.Tags.Add(tag);
+      _db.SaveChanges();
+      return RedirectToAction("Index");
     }
 
     public ActionResult Details(int id)
     {
       // do some other stuff
-      return View();
+      var thisTag = _db.Tags
+        .Include(tag => tag.JoinEntities)
+        .ThenInclude(join => join.Recipe)
+        .FirstOrDefault(tag => tag.TagId == id);
+      return View(thisTag);
     }
 
     public ActionResult Edit(int id)
     {
       // do some stuff
-      return View();
+      var thisTag = _db.Tags
+        .FirstOrDefault(tag => tag.TagId == id);
+      return View(thisTag);
     }
 
     [HttpPost]
     public ActionResult Edit(Tag tag)
     {
       // do some stuff
-      return View();
+      _db.Entry(tag).State = EntityState.Modified;
+      _db.SaveChanges();
+      return RedirectToAction("Index");
     }
 
     public ActionResult Delete(int id)
     {
       // do some stuff
-      return View();
+      var thisTag = _db.Tags
+        .FirstOrDefault(tag => tag.TagId == id);
+      return View(thisTag);
     }
 
     [HttpPost, ActionName("Delete")]
     public ActionResult DeleteConfirmed(int id)
     {
       // do some stuff
-      return View();
+      var thisTag = _db.Tags
+        .FirstOrDefault(tag => tag.TagId == id);
+        _db.Tags.Remove(thisTag);
+        _db.SaveChanges();
+      return RedirectToAction("Index");
     }
   }
 }
