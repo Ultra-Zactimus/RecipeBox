@@ -209,6 +209,69 @@ namespace RecipeBox.Migrations
                     b.ToTable("AspNetUsers");
                 });
 
+            modelBuilder.Entity("RecipeBox.Models.Recipe", b =>
+                {
+                    b.Property<int>("RecipeId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<string>("Ingredients")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<string>("Instructions")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<int>("Rating")
+                        .HasColumnType("int");
+
+                    b.Property<string>("UserId")
+                        .HasColumnType("varchar(255) CHARACTER SET utf8mb4");
+
+                    b.HasKey("RecipeId");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Recipes");
+                });
+
+            modelBuilder.Entity("RecipeBox.Models.RecipeTag", b =>
+                {
+                    b.Property<int>("RecipeTagId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<int>("RecipeId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("TagId")
+                        .HasColumnType("int");
+
+                    b.HasKey("RecipeTagId");
+
+                    b.HasIndex("RecipeId");
+
+                    b.HasIndex("TagId");
+
+                    b.ToTable("RecipeTag");
+                });
+
+            modelBuilder.Entity("RecipeBox.Models.Tag", b =>
+                {
+                    b.Property<int>("TagId")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    b.Property<string>("Category")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.HasKey("TagId");
+
+                    b.ToTable("Tags");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
@@ -258,6 +321,44 @@ namespace RecipeBox.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("RecipeBox.Models.Recipe", b =>
+                {
+                    b.HasOne("RecipeBox.Models.ApplicationUser", "User")
+                        .WithMany()
+                        .HasForeignKey("UserId");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("RecipeBox.Models.RecipeTag", b =>
+                {
+                    b.HasOne("RecipeBox.Models.Recipe", "Recipe")
+                        .WithMany("JoinEntities")
+                        .HasForeignKey("RecipeId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("RecipeBox.Models.Tag", "Tag")
+                        .WithMany("JoinEntities")
+                        .HasForeignKey("TagId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Recipe");
+
+                    b.Navigation("Tag");
+                });
+
+            modelBuilder.Entity("RecipeBox.Models.Recipe", b =>
+                {
+                    b.Navigation("JoinEntities");
+                });
+
+            modelBuilder.Entity("RecipeBox.Models.Tag", b =>
+                {
+                    b.Navigation("JoinEntities");
                 });
 #pragma warning restore 612, 618
         }

@@ -48,6 +48,19 @@ namespace RecipeBox.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Tags",
+                columns: table => new
+                {
+                    TagId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    Category = table.Column<string>(type: "longtext CHARACTER SET utf8mb4", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Tags", x => x.TagId);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "AspNetRoleClaims",
                 columns: table => new
                 {
@@ -153,6 +166,55 @@ namespace RecipeBox.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "Recipes",
+                columns: table => new
+                {
+                    RecipeId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    Rating = table.Column<int>(type: "int", nullable: false),
+                    Name = table.Column<string>(type: "longtext CHARACTER SET utf8mb4", nullable: true),
+                    Ingredients = table.Column<string>(type: "longtext CHARACTER SET utf8mb4", nullable: true),
+                    Instructions = table.Column<string>(type: "longtext CHARACTER SET utf8mb4", nullable: true),
+                    UserId = table.Column<string>(type: "varchar(255) CHARACTER SET utf8mb4", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Recipes", x => x.RecipeId);
+                    table.ForeignKey(
+                        name: "FK_Recipes_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "RecipeTag",
+                columns: table => new
+                {
+                    RecipeTagId = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
+                    RecipeId = table.Column<int>(type: "int", nullable: false),
+                    TagId = table.Column<int>(type: "int", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_RecipeTag", x => x.RecipeTagId);
+                    table.ForeignKey(
+                        name: "FK_RecipeTag_Recipes_RecipeId",
+                        column: x => x.RecipeId,
+                        principalTable: "Recipes",
+                        principalColumn: "RecipeId",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_RecipeTag_Tags_TagId",
+                        column: x => x.TagId,
+                        principalTable: "Tags",
+                        principalColumn: "TagId",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
                 table: "AspNetRoleClaims",
@@ -189,6 +251,21 @@ namespace RecipeBox.Migrations
                 table: "AspNetUsers",
                 column: "NormalizedUserName",
                 unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Recipes_UserId",
+                table: "Recipes",
+                column: "UserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_RecipeTag_RecipeId",
+                table: "RecipeTag",
+                column: "RecipeId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_RecipeTag_TagId",
+                table: "RecipeTag",
+                column: "TagId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -209,7 +286,16 @@ namespace RecipeBox.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
+                name: "RecipeTag");
+
+            migrationBuilder.DropTable(
                 name: "AspNetRoles");
+
+            migrationBuilder.DropTable(
+                name: "Recipes");
+
+            migrationBuilder.DropTable(
+                name: "Tags");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");

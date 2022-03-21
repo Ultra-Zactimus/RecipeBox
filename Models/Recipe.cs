@@ -14,19 +14,19 @@ namespace RecipeBox.Models
     public string Name { get; set; }
     public string Ingredients { get; set; }
     public string Instructions { get; set; }
-    public List<Type> Types { get; set; }
+    // public List<Type> Types { get; set; }
     public virtual ICollection<RecipeTag> JoinEntities { get; set; }
-
+    public virtual ApplicationUser User { get; set; }
   }
 
-  public enum RecipeType
-  {
-    Vegan,
-    Vegetarian,
-    Pescatarian,
-    Paleo,
-    GlutenFree,
-    Omnivorous,
-    NoneOfTheAbove
-  }
+  // public enum Type
+  // {
+  //   Vegan,
+  //   Vegetarian,
+  //   Pescatarian,
+  //   Paleo,
+  //   GlutenFree,
+  //   Omnivorous,
+  //   NoneOfTheAbove
+  // }
 }

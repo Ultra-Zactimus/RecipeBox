@@ -45,3 +45,15 @@ C:\Users\ultra\desktop\RecipeBox\obj\Debug\net5.0\RecipeBox.dll
 C:\Users\ultra\desktop\RecipeBox\obj\Debug\net5.0\ref\RecipeBox.dll
 C:\Users\ultra\desktop\RecipeBox\obj\Debug\net5.0\RecipeBox.pdb
 C:\Users\ultra\desktop\RecipeBox\obj\Debug\net5.0\RecipeBox.genruntimeconfig.cache
+C:\Users\ultra\desktop\RecipeBox\obj\Debug\net5.0\Razor\Views\Recipes\AddTag.cshtml.g.cs
+C:\Users\ultra\desktop\RecipeBox\obj\Debug\net5.0\Razor\Views\Recipes\Create.cshtml.g.cs
+C:\Users\ultra\desktop\RecipeBox\obj\Debug\net5.0\Razor\Views\Recipes\Delete.cshtml.g.cs
+C:\Users\ultra\desktop\RecipeBox\obj\Debug\net5.0\Razor\Views\Recipes\Details.cshtml.g.cs
+C:\Users\ultra\desktop\RecipeBox\obj\Debug\net5.0\Razor\Views\Recipes\Edit.cshtml.g.cs
+C:\Users\ultra\desktop\RecipeBox\obj\Debug\net5.0\Razor\Views\Recipes\Index.cshtml.g.cs
+C:\Users\ultra\desktop\RecipeBox\obj\Debug\net5.0\Razor\Views\Tags\Create.cshtml.g.cs
+C:\Users\ultra\desktop\RecipeBox\obj\Debug\net5.0\Razor\Views\Tags\Delete.cshtml.g.cs
+C:\Users\ultra\desktop\RecipeBox\obj\Debug\net5.0\Razor\Views\Tags\Details.cshtml.g.cs
+C:\Users\ultra\desktop\RecipeBox\obj\Debug\net5.0\Razor\Views\Tags\Edit.cshtml.g.cs
+C:\Users\ultra\desktop\RecipeBox\obj\Debug\net5.0\Razor\Views\Tags\Index.cshtml.g.cs
+C:\Users\ultra\desktop\RecipeBox\obj\Debug\net5.0\Razor\Views\_ViewStart.cshtml.g.cs
