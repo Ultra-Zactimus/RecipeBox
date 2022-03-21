@@ -1,6 +1,6 @@
 namespace RecipeBox.Models
 {
-  public class RecipeBox
+  public class RecipeTag
   {       
     public int RecipeTagId { get; set; }
     public int RecipeId { get; set; }
