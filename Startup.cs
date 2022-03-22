@@ -42,6 +42,11 @@ namespace RecipeBox
         options.Password.RequireUppercase = false;
         options.Password.RequiredUniqueChars = 0;
       });
+
+      services.ConfigureApplicationCookie(options =>
+      {
+        options.LoginPath = "/";
+      });
     }
 
     public void Configure(IApplicationBuilder app)
@@ -63,7 +68,7 @@ namespace RecipeBox
       
       app.Run(async (context) =>
       {
-        await context.Response.WriteAsync("Hello World!");
+        await context.Response.WriteAsync("The browser just pinched a loaf!");
       });
     }
   }
